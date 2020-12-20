@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 gem 'devise'
-gem 'bootstrap', '~> 5.0.0.alpha3'
 gem 'mini_racer'
 gem 'tinymce-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -12,7 +11,6 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 group :development, :test do
   gem 'sqlite3'
  end
- 
  group :production do
    gem 'pg'
  end
