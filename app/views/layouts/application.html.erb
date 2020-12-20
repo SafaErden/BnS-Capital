@@ -19,11 +19,16 @@
             <a class="text-muted" href="#">Donate</a>
           </div>
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark h3" href="#">B&S Capital</a>
+            <%= link_to "B&S Capital", "/", :class => "blog-header-logo text-dark h3" %>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+            <% unless user_signed_in? %>
+              <%= link_to "Sign up", "/users/sign_up", :class => "btn btn-sm btn-outline-secondary" %>
+              <%= link_to "Sign in", "/users/sign_in", :class => "btn btn-sm btn-outline-secondary ml-2" %>
+            <% else %>
             <%= link_to 'New Article', new_article_path, :class => "btn btn-sm btn-outline-secondary ml-2" %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-sm btn-outline-secondary ml-2"  %>
+            <% end %>
           </div>
         </div>
       </div>

@@ -26,11 +26,11 @@
     <div class="blog-header-logo text-dark h4 mt-5">
       Replies
     </div>
+    <%= render @article.comments %>
       <div class="comment-form">
         <hr />
         <%= render 'comments/form' %>
       </div>
-      <%= render @article.comments %>
       </div>
     </div>
 </div>
