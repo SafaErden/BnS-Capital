@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center mt-5 mb-3">
-    <div class="h1 col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8">
-        <strong><%= @article.title %></strong>
+    <div class="h1 col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 blog-header-logo">
+        <strong><em><%= @article.title %></em></strong>
     </div>
   </div>
   <div class="row justify-content-center">
@@ -21,6 +21,21 @@
         <%= sanitize @article.content %>
     </div>
   </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8">
+    <div class="blog-header-logo text-dark h4 mt-5">
+      Replies
+    </div>
+      <div class="comment-form">
+        <hr />
+        <%= render 'comments/form' %>
+      </div>
+      <%= render @article.comments %>
+      </div>
+    </div>
 </div>
+
+
+		
 
 
