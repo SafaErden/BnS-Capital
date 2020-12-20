@@ -4,8 +4,7 @@
             Create Article
         </div>
         <div class="col-auto">
-            <%= link_to 'Show', @article, :class => "btn btn-sm btn-dark" %>
-            <%= link_to 'Back', articles_path, :class => "text-muted  ml-2" %>
+            <%= link_to 'Back', articles_path, :class => "btn btn-sm btn-dark" %>
         </div>
     </div>
     <%= render 'form', article: @article %>

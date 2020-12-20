@@ -6,7 +6,10 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 text-right">
-      <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-dark text-white" %>
+      <% if @article.user == current_user %>
+        <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-sm btn-dark" %>
+        <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-outline btn-sm text-dark" %>
+      <% end %>
     </div>
   </div>
 
@@ -23,16 +26,20 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8">
-    <div class="blog-header-logo text-dark h4 mt-5">
-      Replies
+      <% if user_signed_in? || @article.comments.count > 0 %>
+        <div class="blog-header-logo text-dark h4 mt-5">
+          Replies
+        </div>
+      <% end %>
+      <%= render @article.comments %>
+      <% if user_signed_in? %>
+        <div class="comment-form">
+          <hr />
+          <%= render 'comments/form' %>
+        </div>
+      <% end %>
     </div>
-    <%= render @article.comments %>
-      <div class="comment-form">
-        <hr />
-        <%= render 'comments/form' %>
-      </div>
-      </div>
-    </div>
+  </div>
 </div>
 
 

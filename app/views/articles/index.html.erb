@@ -6,12 +6,14 @@
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-      <% @articles.each_with_index do |article,index| %>
+      <% @articles[1..3].each_with_index do |article,index| %>
         <div class="carousel-item <%= 'active' if index == 0 %>">
           <%= image_tag(article.cover, :class => "d-block w-100 myCarousel", :alt => article.title) %>
           <div class="carousel-caption d-none d-md-block">
-            <h5><%= article.title %></h5>
-            <p><%= article.abstract %></p>
+            <%= link_to article.title, article, :class => "h5 text-white" %> 
+            <p>
+              <%= link_to article.abstract, article, :class => "text-white" %>
+            </p>
           </div>
       </div>
       <% end %>
@@ -27,19 +29,21 @@
   </div>
 </div>
 
-<div class="container-fluid  bg-dark">
+<div class="container-fluid bg-dark">
   <div class="container jumbotron p-3 p-md-5 text-white bg-dark">
     <div class="col-md-6 px-0">
       <h1 class="display-4 font-italic jumbo"><%= @articles.first.title %></h1>
       <p class="lead my-3"><%= @articles.first.abstract %></p>
-      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+      <p class="lead mb-0">
+        <%= link_to "Continue reading...", @articles.first, :class => "text-white font-weight-bold" %>
+      </p>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="card-columns">
-    <% @articles.each do |article| %>
+    <% @articles[4..-1].each do |article| %>
       <div class="card">
         <%= image_tag(article.cover, :class => "card-img-top", :alt => article.title) %>
         <div class="card-body">
