@@ -1,13 +1,15 @@
-<div class="pt-4 d-flex">
-    <div class="col justify-content-around blog-header-logo text-dark h4">
-        Edit Article
+<div class="container">
+    <div class="pt-4 d-flex">
+        <div class="col justify-content-around blog-header-logo text-dark h4">
+            Edit Article
+        </div>
+        <div class="col-auto">
+            <%= link_to 'Show', @article, :class => "btn btn-sm btn-dark" %>
+            <%= link_to 'Back', articles_path, :class => "text-muted  ml-2" %>
+        </div>
     </div>
-    <div class="col-auto">
-        <%= link_to 'Show', @article, :class => "btn btn-sm btn-dark" %>
-        <%= link_to 'Back', articles_path, :class => "text-muted  ml-2" %>
-    </div>
-</div>
 
-<div class="py-2">
-    <%= render 'form', article: @article %>
+    <div class="py-2">
+        <%= render 'form', article: @article %>
+    </div>
 </div>
