@@ -22,13 +22,11 @@
   <div class="col-12 mb-3">
     <%= form.label :abstract %>
     <%= form.text_area :abstract, rows:"5", :class => "form-control" %>
-    <%= tinymce %>
   </div>
 
   <div class="col-12 mb-3">
     <%= form.label :content %>
-    <%= form.text_area :content,  :class => "tinymce" %>
-    <%= tinymce %>
+    <%= form.rich_text_area :content %>
   </div>
 
   <div class="col-12 mb-3 justify-conetnt-end">

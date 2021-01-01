@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -63,7 +64,14 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      begin
+        @article = Article.find(params[:id])
+      rescue
+        respond_to do |format|
+          format.html { redirect_to articles_url, notice: 'Article was not found.' }
+          format.json { head :no_content }
+        end
+      end
     end
 
     # Only allow a list of trusted parameters through.

@@ -6,16 +6,19 @@
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-      <% @articles[1..3].each_with_index do |article,index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>">
-          <%= image_tag(article.cover, :class => "d-block w-100 myCarousel", :alt => article.title) %>
-          <div class="carousel-caption d-none d-md-block">
-            <%= link_to article.title, article, :class => "h5 text-white" %> 
-            <p>
-              <%= link_to article.abstract, article, :class => "text-white" %>
-            </p>
+      <% begin %>
+        <% @articles[1..3].each_with_index do |article,index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= image_tag(article.cover, :class => "d-block w-100 myCarousel", :alt => article.title) %>
+            <div class="carousel-caption d-none d-md-block">
+              <%= link_to article.title, article, :class => "h5 text-white" %> 
+              <p>
+                <%= link_to article.abstract, article, :class => "text-white" %>
+              </p>
+            </div>
           </div>
-      </div>
+        <% end %>
+      <% rescue %>
       <% end %>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -32,34 +35,40 @@
 <div class="container-fluid bg-dark">
   <div class="container jumbotron p-3 p-md-5 text-white bg-dark">
     <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic jumbo"><%= @articles.first.title %></h1>
-      <p class="lead my-3"><%= @articles.first.abstract %></p>
-      <p class="lead mb-0">
-        <%= link_to "Continue reading...", @articles.first, :class => "text-white font-weight-bold" %>
-      </p>
+      <% begin %>
+        <h1 class="display-4 font-italic jumbo"><%= @articles.first.title %></h1>
+        <p class="lead my-3"><%= @articles.first.abstract %></p>
+        <p class="lead mb-0">
+          <%= link_to "Continue reading...", @articles.first, :class => "text-white font-weight-bold" %>
+        </p>
+      <% rescue %>
+      <% end %>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="card-columns">
-    <% @articles[4..-1].each do |article| %>
-      <div class="card">
-        <%= image_tag(article.cover, :class => "card-img-top", :alt => article.title) %>
-        <div class="card-body">
-          <h5 class="card-title"><%= article.title %></h5>
-          <p class="card-text"><%= article.abstract %></p>
+    <% begin %>
+      <% @articles[4..-1].each do |article| %>
+        <div class="card">
+          <%= image_tag(article.cover, :class => "card-img-top", :alt => article.title) %>
+          <div class="card-body">
+            <h5 class="card-title"><%= article.title %></h5>
+            <p class="card-text"><%= article.abstract %></p>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to 'Read More', article, :class => "btn btn-sm btn-outline-secondary" %>
+              </div>
+              <small class="text-muted"><%= article.comments.count %> comments</small>
+            </div>
+          </div>
         </div>
-        <div class="card-footer">
-        <div class="d-flex justify-content-between align-items-center">
-        <div class="btn-group">
-          <%= link_to 'Read More', article, :class => "btn btn-sm btn-outline-secondary" %>
-        </div>
-        <small class="text-muted"><%= article.comments.count %> comments</small>
-      </div>
-      </div>
-      </div>
-    <%  end %>
+      <%  end %>
+    <% rescue %>
+    <% end %>
   </div>
 </div>
 
